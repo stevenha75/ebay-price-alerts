@@ -13,7 +13,6 @@ Checks &amp; alerts for eBay price drops that you set.
 
 # Installation & Usage
 ## Dependencies
-- [Python](https://www.python.org/downloads/)
 
 ## Installation
 First, download the script onto your computer
@@ -23,7 +22,6 @@ cd ebay-price-alerts
 ```
 Then, install the needed packages for the script
 ```shell
-pip install -r requirements.txt
 ```
 ## Using the Script
 
