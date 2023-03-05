@@ -9,7 +9,8 @@ Checks &amp; alerts for eBay price drops that you set.
   - [Using the Script](https://github.com/stevenha75/ebay-price-alerts/edit/main/README.md#using-the-script)
 
 ## Task List
-- [ ] Research required libraries & make a plan
+- [ ] Design a GUI
+- [ ] Implement said GUI
 
 # Installation & Usage
 ## Dependencies
