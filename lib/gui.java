@@ -1,8 +1,9 @@
+package lib;
 import java.awt.Color;
 /*
  * Task List:
  * Fix set Background
- * Design and then implement a gui
+ * Design and implement a gui
  */
 
 import javax.swing.JFrame;
