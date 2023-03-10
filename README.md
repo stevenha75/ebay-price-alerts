@@ -9,6 +9,7 @@ Checks &amp; alerts for eBay price drops that you set.
   - [Using the program](https://github.com/stevenha75/ebay-price-alerts#using-the-program)
 
 ## Task List
+- [ ] Setup maven
 - [ ] Design a GUI
 - [ ] Implement said GUI
 
