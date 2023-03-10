@@ -2,11 +2,11 @@
 Checks &amp; alerts for eBay price drops that you set.
 
 ## Table of Contents
-- [Task List](https://github.com/stevenha75/ebay-price-alerts/edit/main/README.md#task-list)
-- [Installation & Usage](https://github.com/stevenha75/ebay-price-alerts/edit/main/README.md#installation--usage)
-  - [Dependencies](https://github.com/stevenha75/ebay-price-alerts/edit/main/README.md#dependencies)
-  - [Installation](https://github.com/stevenha75/ebay-price-alerts/edit/main/README.md#installation)
-  - [Using the Script](https://github.com/stevenha75/ebay-price-alerts/edit/main/README.md#using-the-script)
+- [Task List](https://github.com/stevenha75/ebay-price-alerts#task-list)
+- [Installation & Usage](https://github.com/stevenha75/ebay-price-alerts#installation--usage)
+  - [Dependencies](https://github.com/stevenha75/ebay-price-alerts#dependencies)
+  - [Installation](https://github.com/stevenha75/ebay-price-alerts#installation)
+  - [Using the program](https://github.com/stevenha75/ebay-price-alerts#using-the-program)
 
 ## Task List
 - [ ] Design a GUI
