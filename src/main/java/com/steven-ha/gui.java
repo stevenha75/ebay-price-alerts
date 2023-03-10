@@ -1,4 +1,4 @@
-package lib;
+
 import java.awt.Color;
 /*
  * Task List:
