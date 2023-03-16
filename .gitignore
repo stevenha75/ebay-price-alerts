@@ -1,1 +1,5 @@
 .vscode/
+
+# Maven Wrapper files
+mvnw
+.mvn/wrapper/maven-wrapper.jar
