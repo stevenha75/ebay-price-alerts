@@ -1,13 +1,10 @@
 package com.ebayalerter;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        // Creating window
+        new gui();
     }
 }

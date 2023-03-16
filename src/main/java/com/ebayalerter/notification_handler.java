@@ -1,6 +1,6 @@
 package com.ebayalerter;
 
-// Handles notifications and sends via discord webhooks
+// Handles notifications and sends via discord webhooks/desktop notifications
 public class notification_handler {
     private String webhookURL;
     
