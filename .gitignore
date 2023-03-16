@@ -1,5 +1,27 @@
-.vscode/
+# Maven target directory
+target/
 
-# Maven Wrapper files
-mvnw
-.mvn/wrapper/maven-wrapper.jar
+# IDE-specific files
+.vscode/
+.idea/
+*.iml
+
+# Maven-specific files
+*.log
+
+# Other generated files
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.rar
+
+# Keep the Maven Wrapper
+!.mvn/
+!.mvn/wrapper/
+!.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.properties
