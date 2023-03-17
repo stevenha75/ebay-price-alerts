@@ -11,37 +11,27 @@ public class gui extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Center the window
         setResizable(false); // Turns off window resizing
-        
-        // Set the layout manager
-        setLayout(new BorderLayout());
 
-        // Item List Label
-        JLabel itemList = new JLabel("Item List");
-        // Set the horizontal alignment of the label to left
-        itemList.setHorizontalAlignment(JLabel.LEFT);
-        // Set the font size of the label
-        itemList.setFont(new Font("Arial", Font.BOLD, 25));
-        // Add the label to the NORTH region of the layout manager
-        add(itemList, BorderLayout.NORTH);
-
-        // Right aligned buttons
-        // Small refresh button
-
+        // Right aligned button panel
+        JPanel buttonPanel = new JPanel(new GridLayout(5,1));
+        // Add refresh button
+        JButton refreshButton = new JButton("Refresh");
+        refreshButton.setPreferredSize(new Dimension(buttonPanel.getPreferredSize().width, buttonPanel.getPreferredSize().height / 2));
+        buttonPanel.add(refreshButton);
         // Add button
-        JButton addButton = new JButton("Click me!");
-        add(addButton, BorderLayout.EAST);
-
+        JButton addButton = new JButton("Add");
+        buttonPanel.add(addButton);
         // Remove button
-        JButton removeButton = new JButton("Click me!");
-        add(removeButton, BorderLayout.EAST);
-
+        JButton removeButton = new JButton("Remove");
+        buttonPanel.add(removeButton);
         // Modify button
-        JButton modifyButton = new JButton("Click me!");
-        add(modifyButton, BorderLayout.EAST);
-
+        JButton modifyButton = new JButton("Modify");
+        buttonPanel.add(modifyButton);
         // Settings button
-        JButton settings = new JButton("Click me!");
-        add(settings, BorderLayout.EAST);
+        JButton settings = new JButton("Settings");
+        buttonPanel.add(settings);
+        // Adding button panel to the east quadrant
+        add(buttonPanel, BorderLayout.EAST);
 
         // Show the window
         setVisible(true);
