@@ -7,8 +7,4 @@ public class notification_handler {
     public void setwebhookURL(String webhookURL){
         this.webhookURL = webhookURL;
     }
-
-    public void sendNotification(){
-
-    }
 }

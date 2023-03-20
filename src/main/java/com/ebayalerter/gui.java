@@ -33,6 +33,15 @@ public class gui extends JFrame{
         // Adding button panel to the east quadrant
         add(buttonPanel, BorderLayout.EAST);
 
+        // Creating the main item table
+        // Task List: 
+        // - Make selection possible but disable editting
+        String[] header = {"name", "price", "price limit", "last refresh"};
+        String[][] tempData = {{"Shoes", "$50", "$25", "10m"}};
+        JTable table = new JTable(tempData, header);
+        JScrollPane scrollPane = new JScrollPane(table);
+        add(scrollPane, BorderLayout.CENTER);
+
         // Show the window
         setVisible(true);
     }
