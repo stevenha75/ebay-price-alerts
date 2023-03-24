@@ -9,12 +9,19 @@ import org.junit.Test;
  */
 public class itemTest 
 {
-    /**
-     * Rigorous Test :-)
-     */
     @Test
-    public void shouldAnswerWithTrue()
+    public void testCheckPrice_False()
     {
-        assertTrue( true );
+        item tempItem = new item("tempItem", "tempLink", 100, 90);
+        Boolean tempBool = tempItem.checkPrice();
+        assertEquals(false, tempBool);
+
+    }
+
+    @Test
+    public void testCheckPrice_True(){
+        item tempItem = new item("tempItem", "tempLink", 80, 90);
+        Boolean tempBool = tempItem.checkPrice();
+        assertEquals(true, tempBool);
     }
 }
