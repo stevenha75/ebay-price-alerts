@@ -9,7 +9,7 @@ import java.io.IOException;
 public class item {
     private String name;
     private String link;
-    private String price;
+    private double price;
     private double limit; // If price is less than or equal to limit -> send notification
 
     public item(String link, double limit){
@@ -21,7 +21,7 @@ public class item {
         return this.name;
     }
 
-    public String getPrice(){
+    public double getPrice(){
         return this.price;
     }
 
@@ -33,9 +33,9 @@ public class item {
         return this.link;
     }
 
-    // public boolean checkPrice(){
-    //     return price <= limit;
-    // }
+    public boolean checkPrice(){
+        return price <= limit;
+    }
 
     public void scrape(){
         try {
@@ -44,12 +44,13 @@ public class item {
 
             for (Element item : items) {
                 this.name = item.select("h1.x-item-title__mainTitle span.ux-textspans.ux-textspans--BOLD").text();
-                this.price = item.select("span[itemprop=price]").text();
+                String tempPrice = item.select("span[itemprop=price]").text();
+                this.price = Double.parseDouble(tempPrice.replaceAll("[^0-9\\.]+", ""));
             }
     
         } catch (IOException e) {
             this.name = "UNABLE TO CONNECT";
-            this.price = "0";
+            this.price = 0;
         }
 
     }
