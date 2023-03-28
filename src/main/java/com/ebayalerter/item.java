@@ -17,6 +17,13 @@ public class item {
         this.limit = limit;
     }
 
+    public item(String name, String link, double price, double limit){
+        this.name = name;
+        this.link = link;
+        this.price = price;
+        this.limit = limit;
+    }
+
     public String getName(){
         return this.name;
     }
