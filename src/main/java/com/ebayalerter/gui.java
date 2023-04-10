@@ -80,8 +80,8 @@ public class gui extends JFrame{
 
                 final JFrame frame = new JFrame("Add item");
                 JPanel panel = new JPanel();
-                JTextField linkTextField = new JTextField(20);
-                JTextField doubleTextField = new JTextField(20);
+                final JTextField linkTextField = new JTextField(20);
+                final JTextField doubleTextField = new JTextField(20);
                 panel.add(new JLabel("Link:"));
                 panel.add(linkTextField);
                 panel.add(new JLabel("Price limit:"));
@@ -91,10 +91,17 @@ public class gui extends JFrame{
                 JButton addExecutionButton = new JButton("Add");
                 panel.add(addExecutionButton);
         
-                
+                /*
+                 * To do:
+                 * Integrate addItem w/ updating the data in the NumberedTable class
+                 * Dynamically update the tableUI
+                 */
                 // Add an ActionListener to the "Add" button to dispose of the window when clicked
                 addExecutionButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
+                        String link = linkTextField.getText();
+                        String priceLimit = doubleTextField.getText();
+                        itemList.addItem(link, Double.parseDouble(priceLimit));
                         frame.dispose(); // Close the window
                         isAddWindowOpen = false; // Set the flag to false
                     }
@@ -110,6 +117,7 @@ public class gui extends JFrame{
                 frame.add(panel);
                 frame.setResizable(false);
                 frame.pack();
+                frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
             }
         });

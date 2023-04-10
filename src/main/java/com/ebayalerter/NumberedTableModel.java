@@ -7,17 +7,17 @@
 
 package com.ebayalerter;
 
+import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 public class NumberedTableModel extends AbstractTableModel {
     private String[] columnNames = {"index", "name", "price", "price limit"};
-    private Object[][] data = {
-        {"Temporary", "$50", "$25"},
-    };
+    // Builds default itemTable with itemList class
+    private ArrayList<String[]> data = itemList.buildItemTable();
 
     @Override
     public int getRowCount() {
-        return data.length;
+        return data.size();
     }
 
     @Override
@@ -27,10 +27,11 @@ public class NumberedTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int row, int column) {
+        String[] rowData = data.get(row);
         if (column == 0) {
             return String.valueOf(row + 1);
         } else {
-            return data[row][column - 1];
+            return rowData[column - 1];
         }
     }
 
