@@ -1,3 +1,10 @@
+/*
+ * To do:
+ * - More abstraction needed
+ * - Make buttons functional & link up w/ the other classes
+ * - Decide if a settings button is necessary
+ */
+
 package com.ebayalerter;
 
 import javax.swing.*;
@@ -25,7 +32,7 @@ public class gui extends JFrame{
         JButton removeButton = new JButton("Remove");
         buttonPanel.add(removeButton);
         // Modify button
-        JButton modifyButton = new JButton("Modify");
+        JButton modifyButton = new JButton("Modify Limit");
         buttonPanel.add(modifyButton);
         // Settings button
         JButton settings = new JButton("Settings");
@@ -33,12 +40,8 @@ public class gui extends JFrame{
         // Adding button panel to the east quadrant
         add(buttonPanel, BorderLayout.EAST);
 
-        // Creating the main item table
-        // Task List: 
-        // - Make selection possible but disable editting
-        String[] header = {"name", "price", "price limit", "last refresh"};
-        String[][] tempData = {{"Shoes", "$50", "$25", "10m"}};
-        JTable table = new JTable(tempData, header);
+        // Adding the table
+        JTable table = new JTable(new NumberedTableModel());
         JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane, BorderLayout.CENTER);
 

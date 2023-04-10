@@ -40,10 +40,16 @@ public class item {
         return this.link;
     }
 
+    public void setLimit(double limit){
+        this.limit = limit;
+    }
+
+    // Compares price and limit and returns a boolean
     public boolean checkPrice(){
         return price <= limit;
     }
 
+    // Scrapes website at this.link and sets the price and name
     public void scrape(){
         try {
             Document doc = Jsoup.connect(this.link).get();
