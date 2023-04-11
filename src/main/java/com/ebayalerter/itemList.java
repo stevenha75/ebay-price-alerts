@@ -44,7 +44,7 @@ public class itemList {
     }
 
     // When this is called, the table needs to be rebuilt with buildItemTable()
-    public static void removeItem(int index){
+    public static void removeItem(Integer index){
         itemList.remove(index - 1);
     }
 

@@ -62,7 +62,7 @@ public class item {
             }
     
         } catch (IOException e) {
-            this.name = "UNABLE TO CONNECT";
+            this.name = "UNABLE TO RETRIEVE";
             this.price = 0;
         }
 
