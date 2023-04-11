@@ -1,9 +1,3 @@
-/*
- * To do:
- * - Make buttons functional & link up w/ the other classes
- * - Decide if a settings button is necessary
- */
-
 package com.ebayalerter;
 
 import javax.swing.*;
@@ -14,12 +8,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-
-public class gui extends JFrame{
-    private static JTable table; 
+public class gui extends JFrame {
+    private static JTable table;
     private static boolean isAddWindowOpen = false;
     private static boolean isRemoveWindowOpen = false;
     private static boolean isModifyWindowOpen = false;
+    private static boolean isSettingsWindowOpen = false;
 
     public gui() {
         // Creating window
@@ -42,27 +36,29 @@ public class gui extends JFrame{
         setVisible(true);
     }
 
-    public static JPanel loadButtons(){
+    public static void refreshTable(){
+        itemList.refresh();
+        table.setModel(new NumberedTableModel()); // Regenerates the model
+        table.updateUI();
+    }
+
+    private static JPanel loadButtons() {
         // Right aligned button panel
-        JPanel buttonPanel = new JPanel(new GridLayout(5,1));
-        // Add refresh button
-        JButton refreshButton = new JButton("Refresh");
-        buttonPanel.add(refreshButton);
+        JPanel buttonPanel = new JPanel(new GridLayout(5, 1));
+        buttonPanel.add(loadRefreshButton());
         buttonPanel.add(loadAddButton());
         buttonPanel.add(loadRemoveButton());
         buttonPanel.add(loadModifyButton());
-        // Settings button
-        JButton settings = new JButton("Settings");
-        buttonPanel.add(settings);
+        buttonPanel.add(loadSettingsButton());
 
         return buttonPanel;
     }
 
-    public static JButton loadAddButton(){
+    private static JButton loadAddButton() {
         JButton addButton = new JButton("Add");
         // Making the add button open another window
         addButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 // Check if an add window is already open
                 if (isAddWindowOpen) {
                     return;
@@ -83,7 +79,7 @@ public class gui extends JFrame{
                 // Add the "Add" button to the panel
                 JButton addExecutionButton = new JButton("Add");
                 panel.add(addExecutionButton);
-        
+
                 addExecutionButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         String link = linkTextField.getText();
@@ -95,7 +91,7 @@ public class gui extends JFrame{
                         isAddWindowOpen = false; // Set the flag to false
                     }
                 });
-                
+
                 // Add a WindowListener to set the flag to false when the window is closed
                 frame.addWindowListener(new WindowAdapter() {
                     public void windowClosing(WindowEvent e) {
@@ -113,11 +109,11 @@ public class gui extends JFrame{
         return addButton;
     }
 
-    public static JButton loadRemoveButton(){
+    private static JButton loadRemoveButton() {
         JButton removeButton = new JButton("Remove");
         // Making the remove button open another window
         removeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 // Check if an remove window is already open
                 if (isRemoveWindowOpen) {
                     return;
@@ -135,7 +131,7 @@ public class gui extends JFrame{
                 // Add the "Remove" button to the panel
                 JButton removeExecutionButton = new JButton("Remove");
                 panel.add(removeExecutionButton);
-        
+
                 removeExecutionButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         String itemIndex = doubleTextField.getText();
@@ -146,7 +142,7 @@ public class gui extends JFrame{
                         isRemoveWindowOpen = false; // Set the flag to false
                     }
                 });
-                
+
                 // Add a WindowListener to set the flag to false when the window is closed
                 frame.addWindowListener(new WindowAdapter() {
                     public void windowClosing(WindowEvent e) {
@@ -164,11 +160,11 @@ public class gui extends JFrame{
         return removeButton;
     }
 
-    public static JButton loadModifyButton(){
+    private static JButton loadModifyButton() {
         JButton modifyButton = new JButton("Modify Limit");
         // Making the Modify Limit button open another window
         modifyButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 // Check if an modify window is already open
                 if (isModifyWindowOpen) {
                     return;
@@ -189,7 +185,7 @@ public class gui extends JFrame{
                 // Add the "Modify" button to the panel
                 JButton modifyExecutionButton = new JButton("Modify");
                 panel.add(modifyExecutionButton);
-        
+
                 modifyExecutionButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         String itemIndex = indexTextField.getText();
@@ -201,7 +197,7 @@ public class gui extends JFrame{
                         isModifyWindowOpen = false; // Set the flag to false
                     }
                 });
-                
+
                 // Add a WindowListener to set the flag to false when the window is closed
                 frame.addWindowListener(new WindowAdapter() {
                     public void windowClosing(WindowEvent e) {
@@ -217,5 +213,80 @@ public class gui extends JFrame{
             }
         });
         return modifyButton;
+    }
+
+    
+    private static JButton loadRefreshButton() {
+        JButton refreshButton = new JButton("Refresh");
+        refreshButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                refreshTable();
+            }
+        });
+        return refreshButton;
+
+    }
+
+    private static JButton loadSettingsButton() {
+         JButton settingsButton = new JButton("Settings");
+         // Making the settings button open another window
+         settingsButton.addActionListener(new ActionListener() {
+             public void actionPerformed(ActionEvent e) {
+                 // Check if an setting window is already open
+                 if (isSettingsWindowOpen) {
+                     return;
+                 }
+ 
+                 // Set the flag to true to indicate that an settings window is open
+                 isSettingsWindowOpen = true;
+
+                 
+                 final JFrame frame = new JFrame("Settings");
+                 JPanel panel = new JPanel();
+
+                 // Setting up the text fields
+                 final JTextField webhookTextField = new JTextField(20);
+                 final JTextField refreshTimeTextField = new JTextField(20);
+                 webhookTextField.setText(notification_handler.getWebhookUrl());
+                 refreshTimeTextField.setText(String.valueOf(App.getRefreshTime()));
+                 panel.add(new JLabel("Webhook Link:"));
+                 panel.add(webhookTextField);
+                 panel.add(new JLabel("Refresh Time (sec):"));
+                 panel.add(refreshTimeTextField);
+ 
+                 // Add the "Apply" button to the panel
+                 JButton applySettingsButton = new JButton("Apply");
+                 panel.add(applySettingsButton);
+ 
+                 applySettingsButton.addActionListener(new ActionListener() {
+                     public void actionPerformed(ActionEvent e) {
+                         String newWebhookUrl = webhookTextField.getText();
+                         notification_handler.setWebhook(newWebhookUrl);
+
+                         String newRefreshTime = refreshTimeTextField.getText();
+                         App.setRefreshTime(Integer.parseInt(newRefreshTime));
+                         App.stopAutoRefresh();
+                         App.startAutoRefresh();
+
+                         frame.dispose(); // Close the window
+                         isSettingsWindowOpen = false; // Set the flag to false
+                     }
+                 });
+ 
+                 // Add a WindowListener to set the flag to false when the window is closed
+                 frame.addWindowListener(new WindowAdapter() {
+                     public void windowClosing(WindowEvent e) {
+                         isSettingsWindowOpen = false;
+                     }
+                 });
+ 
+                 frame.add(panel);
+                 frame.setResizable(false);
+                 frame.pack();
+                 frame.setLocationRelativeTo(null);
+                 frame.setVisible(true);
+             }
+         });
+         return settingsButton;
     }
 }

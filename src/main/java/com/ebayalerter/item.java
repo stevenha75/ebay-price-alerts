@@ -12,45 +12,45 @@ public class item {
     private double price;
     private double limit; // If price is less than or equal to limit -> send notification
 
-    public item(String link, double limit){
+    public item(String link, double limit) {
         this.link = link;
         this.limit = limit;
     }
 
-    public item(String name, String link, double price, double limit){
+    public item(String name, String link, double price, double limit) {
         this.name = name;
         this.link = link;
         this.price = price;
         this.limit = limit;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
-    public double getPrice(){
+    public double getPrice() {
         return this.price;
     }
 
-    public double getLimit(){
+    public double getLimit() {
         return this.limit;
     }
 
-    public String getLink(){
+    public String getLink() {
         return this.link;
     }
 
-    public void setLimit(double limit){
+    public void setLimit(double limit) {
         this.limit = limit;
     }
 
     // Compares price and limit and returns a boolean
-    public boolean checkPrice(){
+    public boolean checkPrice() {
         return price <= limit;
     }
 
     // Scrapes website at this.link and sets the price and name
-    public void scrape(){
+    public void scrape() {
         try {
             Document doc = Jsoup.connect(this.link).get();
             Elements items = doc.select("div#LeftSummaryPanel");
@@ -60,9 +60,10 @@ public class item {
                 String tempPrice = item.select("span[itemprop=price]").text();
                 this.price = Double.parseDouble(tempPrice.replaceAll("[^0-9\\.]+", ""));
             }
-    
+
         } catch (IOException e) {
             this.name = "UNABLE TO RETRIEVE";
+            this.link = "ERROR";
             this.price = 0;
         }
 

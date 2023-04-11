@@ -1,5 +1,5 @@
 # ebay-price-alerts
-Checks &amp; alerts for eBay price drops that you set. GUI is included to make usage simple. This project is currently still in development.
+Checks &amp; alerts for eBay price drops that you set. GUI is included to make usage simple. 
 
 ## Table of Contents
 - [Screenshots](https://github.com/stevenha75/ebay-price-alerts#screenshots)
@@ -7,6 +7,13 @@ Checks &amp; alerts for eBay price drops that you set. GUI is included to make u
   - [Dependencies](https://github.com/stevenha75/ebay-price-alerts#dependencies)
   - [Installation](https://github.com/stevenha75/ebay-price-alerts#installation)
   - [Using the program](https://github.com/stevenha75/ebay-price-alerts#using-the-program)
+
+## Task List
+- [] Add desktop notifications & toggles for notifications in settings
+- [] Add error catching
+ - [] Catch invalid webhook urls
+- [] Add a way to import a list of items
+- [] Unit testing
 
 ## Screenshots
 

@@ -1,8 +1,3 @@
-/*
- * To do:
- * Go through each class and create tests after finishing V1.0
- */
-
 package com.ebayalerter;
 
 import static org.junit.Assert.*;

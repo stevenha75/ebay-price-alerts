@@ -1,8 +1,3 @@
-/*
- * To do:
- * - Add implementation to set webhook
- */
-
 package com.ebayalerter;
 
 import okhttp3.*;
@@ -13,12 +8,21 @@ import org.json.JSONObject;
 public class notification_handler {
     private static String webhookUrl;
 
+    public static String getWebhookUrl(){
+        return webhookUrl;
+    }
+
+    public static void setWebhook(String newWeebhookUrl){
+        webhookUrl = newWeebhookUrl;
+    }
+
     public static void sendDiscordNotification(String message) {
         OkHttpClient client = new OkHttpClient();
         // Indicating that the mssage body should be sent in JSON format
         MediaType mediaType = MediaType.parse("application/json");
         JSONObject json = new JSONObject();
-        // Creating a key value pair with the 'content' key being used to specify the mssage content in the request body
+        // Creating a key value pair with the 'content' key being used to specify the
+        // mssage content in the request body
         json.put("content", message);
         RequestBody body = RequestBody.create(mediaType, json.toString());
         Request request = new Request.Builder()

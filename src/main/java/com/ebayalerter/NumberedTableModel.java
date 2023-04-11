@@ -1,17 +1,10 @@
-/*
- * To do:
- * - Empty the temporary table values
- * - Link up this class w/ the itemList class
- * - Link up this class with the GUI
- */
-
 package com.ebayalerter;
 
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 public class NumberedTableModel extends AbstractTableModel {
-    private String[] columnNames = {"index", "name", "price", "price limit"};
+    private String[] columnNames = { "index", "name", "price", "price limit" };
     // Builds default itemTable with itemList class
     private ArrayList<String[]> data = itemList.buildItemTable();
 
