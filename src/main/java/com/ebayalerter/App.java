@@ -27,7 +27,6 @@ public class App {
             @Override
             public void run(){
                 gui.refreshTable();
-                System.out.println("Table refreshed!");
             }
         }, 0, refreshTime * 1000);
     }
