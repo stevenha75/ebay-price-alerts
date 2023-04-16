@@ -21,6 +21,7 @@ Checks &amp; alerts for eBay price drops that you set. GUI is included to make u
 # Installation & Usage
 ## Dependencies
 - [Java](https://www.oracle.com/java/technologies/downloads/)
+- All other dependencies are already included via the maven wrapper
 
 ## Installation
 First, download the program onto your computer
