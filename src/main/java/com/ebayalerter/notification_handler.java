@@ -12,11 +12,12 @@ public class notification_handler {
         return webhookUrl;
     }
 
-    public static void setWebhook(String newWeebhookUrl){
+    public static boolean setWebhook(String newWeebhookUrl){
         webhookUrl = newWeebhookUrl;
+        return sendDiscordNotification("This is a test message");
     }
 
-    public static void sendDiscordNotification(String message) {
+    public static boolean sendDiscordNotification(String message) {
         OkHttpClient client = new OkHttpClient();
         // Indicating that the mssage body should be sent in JSON format
         MediaType mediaType = MediaType.parse("application/json");
@@ -25,16 +26,18 @@ public class notification_handler {
         // mssage content in the request body
         json.put("content", message);
         RequestBody body = RequestBody.create(mediaType, json.toString());
+        try {
         Request request = new Request.Builder()
                 .url(webhookUrl)
                 .post(body)
                 .build();
 
-        try {
-            Response response = client.newCall(request).execute();
-            response.close();
-        } catch (IOException e) {
+        Response response = client.newCall(request).execute();
+        response.close();
+        return true;
+        } catch (IOException|IllegalArgumentException e){
             System.err.println("Failed to send HTTP request: " + e.getMessage());
+            return false;
         }
     }
 }

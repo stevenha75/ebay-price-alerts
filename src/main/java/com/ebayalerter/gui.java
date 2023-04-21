@@ -2,6 +2,7 @@ package com.ebayalerter;
 
 import javax.swing.*;
 import java.awt.BorderLayout;
+import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -258,11 +259,40 @@ public class gui extends JFrame {
                  JButton applySettingsButton = new JButton("Apply");
                  panel.add(applySettingsButton);
  
+                 // Execute apply button's actions
                  applySettingsButton.addActionListener(new ActionListener() {
                      public void actionPerformed(ActionEvent e) {
-                         String newWebhookUrl = webhookTextField.getText();
-                         notification_handler.setWebhook(newWebhookUrl);
+                         
+                        // Sets webhook time & catches errors
+                        String newWebhookUrl = webhookTextField.getText();
+                        
+                        /*
+                         * Issues: Window doesn't open at the moment
+                         */
+                        if (notification_handler.setWebhook(newWebhookUrl)){
+                            // Open a window saying test notification was succesful
+                            JFrame frame = new JFrame("Webhook Status");
+                            JPanel panel = new JPanel();
+                            panel.add(new JLabel("Test notification was successful. Webhook is valid."));
 
+                            frame.setResizable(false);
+                            frame.pack();
+                            frame.setLocationRelativeTo(null);
+                            frame.setVisible(true);
+                        }
+                        else {
+                            // Open a window saying test notification failed
+                            JFrame frame = new JFrame("Webhook Status");
+                            JPanel panel = new JPanel();
+                            panel.add(new JLabel("Test notification failed. Webhook is invalid."));
+
+                            frame.setResizable(false);
+                            frame.pack();
+                            frame.setLocationRelativeTo(null);
+                            frame.setVisible(true);
+                        }
+
+                         // Sets refresh time
                          String newRefreshTime = refreshTimeTextField.getText();
                          App.setRefreshTime(Integer.parseInt(newRefreshTime));
                          App.stopAutoRefresh();

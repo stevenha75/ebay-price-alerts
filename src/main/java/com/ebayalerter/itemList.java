@@ -47,6 +47,10 @@ public class itemList {
         itemList.add(tempItem);
     }
 
+    public static void addItem(item Item) {
+        itemList.add(Item);
+    }
+
     // When this is called, the table needs to be rebuilt with buildItemTable()
     public static void removeItem(Integer index) {
         itemList.remove(index - 1);
