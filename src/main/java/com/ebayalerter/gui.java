@@ -263,18 +263,16 @@ public class gui extends JFrame {
                  applySettingsButton.addActionListener(new ActionListener() {
                      public void actionPerformed(ActionEvent e) {
                          
-                        // Sets webhook time & catches errors
                         String newWebhookUrl = webhookTextField.getText();
                         
-                        /*
-                         * Issues: Window doesn't open at the moment
-                         */
+                        // Sets webhook & catches errors
                         if (notification_handler.setWebhook(newWebhookUrl)){
                             // Open a window saying test notification was succesful
                             JFrame frame = new JFrame("Webhook Status");
                             JPanel panel = new JPanel();
                             panel.add(new JLabel("Test notification was successful. Webhook is valid."));
-
+                            
+                            frame.add(panel);
                             frame.setResizable(false);
                             frame.pack();
                             frame.setLocationRelativeTo(null);
@@ -286,6 +284,7 @@ public class gui extends JFrame {
                             JPanel panel = new JPanel();
                             panel.add(new JLabel("Test notification failed. Webhook is invalid."));
 
+                            frame.add(panel);
                             frame.setResizable(false);
                             frame.pack();
                             frame.setLocationRelativeTo(null);
