@@ -2,7 +2,6 @@ package com.ebayalerter;
 
 import javax.swing.*;
 import java.awt.BorderLayout;
-import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -10,6 +9,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class gui extends JFrame {
+    // Class variables
     private static JTable table;
     private static boolean isAddWindowOpen = false;
     private static boolean isRemoveWindowOpen = false;
@@ -44,8 +44,10 @@ public class gui extends JFrame {
     }
 
     private static JPanel loadButtons() {
-        // Right aligned button panel
+        // Creating a right aligned button panel
         JPanel buttonPanel = new JPanel(new GridLayout(5, 1));
+
+        // Adding the buttons
         buttonPanel.add(loadRefreshButton());
         buttonPanel.add(loadAddButton());
         buttonPanel.add(loadRemoveButton());
@@ -57,6 +59,7 @@ public class gui extends JFrame {
 
     private static JButton loadAddButton() {
         JButton addButton = new JButton("Add");
+
         // Making the add button open another window
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -68,26 +71,30 @@ public class gui extends JFrame {
                 // Set the flag to true to indicate that an add window is open
                 isAddWindowOpen = true;
 
+                // Creating necessary elements
                 final JFrame frame = new JFrame("Add item");
                 JPanel panel = new JPanel();
                 final JTextField linkTextField = new JTextField(20);
                 final JTextField doubleTextField = new JTextField(20);
+                JButton addExecutionButton = new JButton("Add");
+
+                // Adding element to the panel
                 panel.add(new JLabel("Link:"));
                 panel.add(linkTextField);
                 panel.add(new JLabel("Price limit:"));
                 panel.add(doubleTextField);
-
-                // Add the "Add" button to the panel
-                JButton addExecutionButton = new JButton("Add");
                 panel.add(addExecutionButton);
 
+                // If add button is pressed -> add item to the list & regenreate the table
                 addExecutionButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         String link = linkTextField.getText();
                         String priceLimit = doubleTextField.getText();
+
                         itemList.addItem(link, Double.parseDouble(priceLimit));
                         table.setModel(new NumberedTableModel()); // Regenerates the model
                         table.updateUI();
+
                         frame.dispose(); // Close the window
                         isAddWindowOpen = false; // Set the flag to false
                     }
@@ -112,6 +119,7 @@ public class gui extends JFrame {
 
     private static JButton loadRemoveButton() {
         JButton removeButton = new JButton("Remove");
+
         // Making the remove button open another window
         removeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -123,20 +131,23 @@ public class gui extends JFrame {
                 // Set the flag to true to indicate that an remove window is open
                 isRemoveWindowOpen = true;
 
+                // Create necessary elements
                 final JFrame frame = new JFrame("Remove item");
                 JPanel panel = new JPanel();
                 final JTextField doubleTextField = new JTextField(20);
+                JButton removeExecutionButton = new JButton("Remove");
+
+                // Add elements to the panel
                 panel.add(new JLabel("Index:"));
                 panel.add(doubleTextField);
-
-                // Add the "Remove" button to the panel
-                JButton removeExecutionButton = new JButton("Remove");
                 panel.add(removeExecutionButton);
 
                 removeExecutionButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         String itemIndex = doubleTextField.getText();
                         itemList.removeItem(Integer.parseInt(itemIndex));
+
+                        // Reset the table
                         table.setModel(new NumberedTableModel()); // Regenerates the model
                         table.updateUI();
                         frame.dispose(); // Close the window
@@ -161,6 +172,11 @@ public class gui extends JFrame {
         return removeButton;
     }
 
+    /*
+     * Date: May 8th
+     * Current position during refactoring commenting
+     */
+    
     private static JButton loadModifyButton() {
         JButton modifyButton = new JButton("Modify Limit");
         // Making the Modify Limit button open another window
