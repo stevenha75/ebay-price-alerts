@@ -10,7 +10,7 @@ Continually checks &amp; alerts for eBay price drops that you set. GUI is includ
 
 ## Task List
 - [ ] Add desktop notifications & toggles for notifications in settings
-- [ ] Refactor gui class
+- [x] Refactor gui class
 - [ ] Add error catching
   - [x] Catch invalid webhook urls
   - [ ] Catch invalid refresh time
