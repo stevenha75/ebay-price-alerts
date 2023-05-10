@@ -171,14 +171,10 @@ public class gui extends JFrame {
         });
         return removeButton;
     }
-
-    /*
-     * Date: May 8th
-     * Current position during refactoring commenting
-     */
     
     private static JButton loadModifyButton() {
         JButton modifyButton = new JButton("Modify Limit");
+
         // Making the Modify Limit button open another window
         modifyButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -190,27 +186,31 @@ public class gui extends JFrame {
                 // Set the flag to true to indicate that an modify window is open
                 isModifyWindowOpen = true;
 
+                // Making necessary elements
                 final JFrame frame = new JFrame("Modify Limit");
                 JPanel panel = new JPanel();
                 final JTextField indexTextField = new JTextField(20);
                 final JTextField limitTextField = new JTextField(20);
+                JButton modifyExecutionButton = new JButton("Modify");
+
+                // Adding necessary elements to the panel
                 panel.add(new JLabel("Index:"));
                 panel.add(indexTextField);
                 panel.add(new JLabel("New limit:"));
                 panel.add(limitTextField);
-
-                // Add the "Modify" button to the panel
-                JButton modifyExecutionButton = new JButton("Modify");
                 panel.add(modifyExecutionButton);
 
                 modifyExecutionButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         String itemIndex = indexTextField.getText();
                         String newLimit = limitTextField.getText();
+
                         itemList.modifyLimit(Integer.parseInt(itemIndex), Double.parseDouble(newLimit));
+
                         table.setModel(new NumberedTableModel()); // Regenerates the model
                         table.updateUI();
                         frame.dispose(); // Close the window
+
                         isModifyWindowOpen = false; // Set the flag to false
                     }
                 });
@@ -235,6 +235,7 @@ public class gui extends JFrame {
     
     private static JButton loadRefreshButton() {
         JButton refreshButton = new JButton("Refresh");
+
         refreshButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 refreshTable();
@@ -246,6 +247,7 @@ public class gui extends JFrame {
 
     private static JButton loadSettingsButton() {
          JButton settingsButton = new JButton("Settings");
+
          // Making the settings button open another window
          settingsButton.addActionListener(new ActionListener() {
              public void actionPerformed(ActionEvent e) {
@@ -257,28 +259,27 @@ public class gui extends JFrame {
                  // Set the flag to true to indicate that an settings window is open
                  isSettingsWindowOpen = true;
 
-                 
+                 // Creating necessary elements
                  final JFrame frame = new JFrame("Settings");
                  JPanel panel = new JPanel();
-
-                 // Setting up the text fields
                  final JTextField webhookTextField = new JTextField(20);
                  final JTextField refreshTimeTextField = new JTextField(20);
+                 JButton applySettingsButton = new JButton("Apply");
+
+                 // Setting default values
                  webhookTextField.setText(notification_handler.getWebhookUrl());
                  refreshTimeTextField.setText(String.valueOf(App.getRefreshTime()));
+
+                 // Adding elements to the panel
                  panel.add(new JLabel("Webhook Link:"));
                  panel.add(webhookTextField);
                  panel.add(new JLabel("Refresh Time (sec):"));
                  panel.add(refreshTimeTextField);
- 
-                 // Add the "Apply" button to the panel
-                 JButton applySettingsButton = new JButton("Apply");
                  panel.add(applySettingsButton);
  
                  // Execute apply button's actions
                  applySettingsButton.addActionListener(new ActionListener() {
-                     public void actionPerformed(ActionEvent e) {
-                         
+                     public void actionPerformed(ActionEvent e) {                         
                         String newWebhookUrl = webhookTextField.getText();
                         
                         // Sets webhook & catches errors
@@ -286,6 +287,7 @@ public class gui extends JFrame {
                             // Open a window saying test notification was succesful
                             JFrame frame = new JFrame("Webhook Status");
                             JPanel panel = new JPanel();
+                            
                             panel.add(new JLabel("Test notification was successful. Webhook is valid."));
                             
                             frame.add(panel);
@@ -298,6 +300,7 @@ public class gui extends JFrame {
                             // Open a window saying test notification failed
                             JFrame frame = new JFrame("Webhook Status");
                             JPanel panel = new JPanel();
+                            
                             panel.add(new JLabel("Test notification failed. Webhook is invalid."));
 
                             frame.add(panel);
@@ -309,6 +312,7 @@ public class gui extends JFrame {
 
                          // Sets refresh time
                          String newRefreshTime = refreshTimeTextField.getText();
+                         
                          App.setRefreshTime(Integer.parseInt(newRefreshTime));
                          App.stopAutoRefresh();
                          App.startAutoRefresh();
