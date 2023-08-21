@@ -1,6 +1,7 @@
 # ebay-price-alerts
-Continually checks &amp; alerts for eBay price drops that you set. GUI is included to make usage simple. 
+ Continuously monitors and alerts for price drops on eBay based on user-defined limits.
 
+ 
 ## Table of Contents
 - [Screenshots](https://github.com/stevenha75/ebay-price-alerts#screenshots)
 - [Installation & Usage](https://github.com/stevenha75/ebay-price-alerts#installation--usage)
